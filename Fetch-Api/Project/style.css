@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color: green;
+  --Pop-san: "Poppins", sans-serif;
+  --align: center;
+}
+
+body {
+  font-family: var(--Pop-san);
+}
+header {
+  text-align: center;
+  margin: 2rem;
+  font-family: var(--Pop-san);
+  color: var(--color);
+}
+
+#countries {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+#countries h2 {
+  font-size: 1rem;
+  background-color: aquamarine;
+  width: 100%;
+}
+.country-col {
+  background: #567895;
+  border: 1px solid burlywood;
+  font-family: var(--Pop-san);
+  text-align: var(--align);
+  flex: 1 1 auto;
+}
+.country-col .country-set {
+  color: white;
+  font-weight: 700;
+}
+img {
+  width: 60%;
+  height: 120px;
+}
+
+.modal__weather {
+  cursor: pointer;
+  color: white;
+  background-color: #0d6efd;
+  display: inline-block;
+  line-height: 1.5;
+  margin: 10px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.Popup__Weather {
+  position: fixed;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 500px;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.5);
+  transform: translate(-50%);
+  left: 50%;
+  top: 30%;
+  display: none;
+}
+
+.weather__Data {
+  display: flex;
+  align-items: center;
+}
+
+.weather__Data img {
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.weather__details {
+  flex: 1;
+}
+
+.weather__details h3 {
+  margin: 5px 0;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  #countries {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+@media (max-width: 700px) {
+  #countries {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  #countries {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+}

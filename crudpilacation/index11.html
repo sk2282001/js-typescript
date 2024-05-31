@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <style>
+        .values {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product button {
+            margin-top: 10px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Pagination styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .search {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Search for products...">
+    </div>
+    <div class="values"></div>
+    <div class="pagination"></div>
+    <button id="newProductBtn">New Product</button>
+    <div id="newProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" id="newTitle" placeholder="Title"><br>
+            <input type="text" id="newBrand" placeholder="Brand"><br>
+            <input type="number" id="newPrice" placeholder="Price"><br>
+            <button id="saveNewProduct">Save</button>
+        </div>
+    </div>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="hidden" id="editId">
+            <input type="text" id="editTitle" placeholder="Title"><br>
+            <input type="text" id="editBrand" placeholder="Brand"><br>
+            <input type="number" id="editPrice" placeholder="Price"><br>
+            <button id="saveChanges">Save Changes</button>
+        </div>
+    </div>
+    <script>
+        let currentPage = 1;
+        const productsPerPage = 20;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const newProductBtn = document.getElementById("newProductBtn");
+            const saveChangesBtn = document.getElementById("saveChanges");
+            const saveNewProductBtn = document.getElementById("saveNewProduct");
+            const closeModalBtns = document.querySelectorAll(".close");
+            const searchInput = document.getElementById("searchInput");
+
+            newProductBtn.addEventListener("click", openNewProductModal);
+            saveChangesBtn.addEventListener("click", saveChanges);
+            saveNewProductBtn.addEventListener("click", saveNewProduct);
+            document.addEventListener("click", handleDocumentClick);
+            closeModalBtns.forEach(btn => btn.addEventListener("click", closeModal));
+            searchInput.addEventListener("input", handleSearch);
+            fetchProducts();
+        });
+
+        function openNewProductModal() {
+            const newProductModal = document.getElementById("newProductModal");
+            newProductModal.style.display = "block";
+        }
+
+        function closeModal() {
+            this.closest(".modal").style.display = "none";
+        }
+
+        function addProductHTML(product) {
+            const container = document.querySelector(".values");
+            const productHTML = `
+                <div class="product" id="product-${product.id}">
+                    <img src="${product.images && product.images[0] ? product.images[0] : 'https://via.placeholder.com/150'}" alt="Product Image">
+                    <p>Product ID: <span>${product.id}</span></p>
+                    <h3>Product Name: <span class="product-title">${product.title}</span></h3>
+                    <h3>Product Brand: <span class="product-brand">${product.brand}</span></h3>
+                    <h3>Price: <span class="product-price">$${product.price}</span></h3>
+                    <button class="edit" data-id="${product.id}">EDIT</button>
+                    <button class="delete" data-id="${product.id}">DELETE</button>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', productHTML);
+        }
+
+        function fetchProducts(searchQuery = '') {
+            const url = searchQuery ? `https://dummyjson.com/products/search?q=${searchQuery}` : "https://dummyjson.com/products";
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    displayProducts(data.products);
+                })
+                .catch(error => {
+                    console.error("Error fetching the products:", error);
+                });
+        }
+
+        function displayProducts(products) {
+            const container = document.querySelector(".values");
+            container.innerHTML = "";
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const displayedProducts = products.slice(startIndex, endIndex);
+            displayedProducts.forEach(product => {
+                addProductHTML(product);
+            });
+            renderPagination(products.length);
+        }
+
+        function deleteProduct(productId) {
+            fetch(`https://dummyjson.com/products/${productId}`, {
+                method: "DELETE"
+            })
+                .then(response => response.json())
+                .then(() => {
+                    currentPage = 1;
+                    fetchProducts();
+                })
+                .catch(error => {
+                    console.error("Error deleting the product:", error);
+                });
+        }
+
+        function openEditModal(id, title, brand, price) {
+            const editModal = document.getElementById("editModal");
+            document.getElementById("editId").value = id;
+            document.getElementById("editTitle").value = title;
+            document.getElementById("editBrand").value = brand;
+            document.getElementById("editPrice").value = price;
+            editModal.style.display = "block";
+        }
+
+        function saveChanges() {
+            const id = document.getElementById("editId").value
+            const title = document.getElementById("editTitle").value;
+            const brand = document.getElementById("editBrand").value;
+            const price = document.getElementById("editPrice").value;
+
+            if (!id || !title || !brand || !price) {
+                console.error("One or more fields are undefined");
+                return;
+            }
+
+            const productElement = document.getElementById(`product-${id}`);
+            productElement.querySelector(".product-title").textContent = title;
+            productElement.querySelector(".product-brand").textContent = brand;
+            productElement.querySelector(".product-price").textContent = `$${price}`;
+
+            closeModal.call(this);
+        }
+
+        // function saveNewProduct() {
+        //     const title = document.getElementById("newTitle").value;
+        //     const brand = document.getElementById("newBrand").value;
+        //     const price = document.getElementById("newPrice").value;
+
+        //     if (!title || !brand || !price) {
+        //         console.error("One or more fields are undefined");
+        //         return;
+        //     }
+
+        //     fetch("https://dummyjson.com/products/add", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify({
+        //             title: title,
+        //             brand: brand,
+        //             price: price
+        //         })
+        //     })
+        //         .then(response => response.json())
+        //         .then(newProduct => {
+        //             currentPage = 1; // Reset current page to 1 after adding a new product
+        //             fetchProducts();
+        //             closeModal.call(this);
+        //         })
+        //         .catch(error => {
+        //             console.error("Error adding the product:", error);
+        //         });
+        // }
+        function saveNewProduct() {
+            const title = document.getElementById("newTitle").value;
+            const brand = document.getElementById("newBrand").value;
+            const price = document.getElementById("newPrice").value;
+
+            if (!title || !brand || !price) {
+                console.error("One or more fields are undefined");
+                return;
+            }
+
+            fetch("https://dummyjson.com/products/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title: title,
+                    brand: brand,
+                    price: price
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to add new product.");
+                    }
+                    return response.json();
+                })
+                .then(newProduct => {
+                    currentPage = 1; // Reset current page to 1 after adding a new product
+                    fetchProducts();
+                    closeModal.call(this);
+                })
+                .catch(error => {
+                    console.error("Error adding the product:", error);
+                });
+        }
+
+
+        function handleDocumentClick(event) {
+            if (event.target.classList.contains("edit")) {
+                const productId = event.target.dataset.id;
+                const productElement = document.getElementById(`product-${productId}`);
+                const title = productElement.querySelector(".product-title").textContent;
+                const brand = productElement.querySelector(".product-brand").textContent;
+                const price = parseFloat(productElement.querySelector(".product-price").textContent.replace("$", ""));
+                openEditModal(productId, title, brand, price);
+            } else if (event.target.classList.contains("delete")) {
+                const productId = event.target.dataset.id;
+                deleteProduct(productId);
+            }
+        }
+
+        function handleSearch(event) {
+            const searchQuery = event.target.value.trim();
+            currentPage = 1; // Reset current page to 1 when initiating a new search
+            fetchProducts(searchQuery);
+        }
+
+        function renderPagination(totalProducts) {
+            const totalPages = Math.ceil(totalProducts / productsPerPage);
+            const paginationContainer = document.querySelector(".pagination");
+            paginationContainer.innerHTML = "";
+
+            const prevButton = document.createElement("button");
+            prevButton.textContent = "Previous";
+            prevButton.addEventListener("click", () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    fetchProducts();
+                }
+            });
+            paginationContainer.appendChild(prevButton);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i.toString();
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    fetchProducts();
+                });
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                paginationContainer.appendChild(button);
+            }
+
+            const nextButton = document.createElement("button");
+            nextButton.textContent = "Next";
+            nextButton.addEventListener("click", () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    fetchProducts();
+                }
+            });
+            paginationContainer.appendChild(nextButton);
+        }
+    </script>
+</body>
+
+</html>

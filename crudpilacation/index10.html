@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product Management</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button onclick="searchProducts()" class="btn">Search</button>
+        </div>
+        <div class="products"></div>
+        <button id="newProductBtn" class="btn">Add New Product</button>
+    </div>
+
+    <div id="newProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" id="newTitle" placeholder="Title">
+            <input type="text" id="newBrand" placeholder="Brand">
+            <input type="number" id="newPrice" placeholder="Price">
+            <button id="saveNewProduct" class="btn">Save</button>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="hidden" id="editId">
+            <input type="text" id="editTitle" placeholder="Title">
+            <input type="text" id="editBrand" placeholder="Brand">
+            <input type="number" id="editPrice" placeholder="Price">
+            <button id="saveChanges" class="btn">Save Changes</button>
+        </div>
+        <div class="pagination">
+        </div>
+    </div>
+
+    <script src="script.js">
+
+    </script>
+</body>
+
+</html>

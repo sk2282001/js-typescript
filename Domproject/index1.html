@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Fetch API Task</h1>
+      <p>
+        Implementing the rest countries and open weather APIs using fetch() API
+      </p>
+      <p>(Takes few seconds to load the content)</p>
+    </header>
+    <div class="search_filter">
+      <input type="search" placeholder="search for country" class="search" />
+    </div>
+    <div class="countries" id="countries"></div>
+    <div class="backdrop hidden"></div>
+    <div class="Popup__Weather hidden">
+      <button class="button-close" onclick="closeWeatherPopup()">X</button>
+      <h2 class="name">Weather Update:</h2>
+      <div class="weather-content">
+        <img src="./weather.jpg" alt="Weather Image" />
+        <p class="desc"></p>
+        <p class="temp"></p>
+        <p class="humidity"></p>
+        <p class="wind"></p>
+      </div>
+    </div>
+    <script src="script1.js"></script>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+<!-- <style>
+       .hidden {
+        display: none;
+      }
+      .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+      .Popup__Weather {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        z-index: 20;
+        border-radius: 5px;
+      }
+    </style> */ -->
+
+    // const link = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`;
+// console.log(link);
+//   console.log(link);
+// `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`
+
+
+
+// const searchcountry = document.querySelector(".search");
+// document.addEventListener("load", function (event) {
+//   event.preventDefault();
+//   searchcountry.addEventListener("input", function () {
+//     const filtercountry = searchcountry.value;
+//     const matchcountry = filtercountry;
+
+//     fetch(`https://restcountries.com/v3.1/name/${matchcountry}`)
+//       .then((res) => res.json())
+//       .then((data) => getCountry(data))
+//       .catch((err) => console.log(err));
+//   });
+// });
+
+// const searchCountries = (event) => {
+//   const searchTerm = event.target.value.toLowerCase();
+//   const filteredCountries = allCountries.filter((country) =>
+//     country.name.common.toLowerCase().startsWith(searchTerm)
+//   );
+//   displayCountries(filteredCountries);
+// };
+
+// document.querySelector(".search").addEventListener("input", searchCountries);
+
+
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color: green;
+  --Pop-san: "Poppins", sans-serif;
+  --align: center;
+}
+
+body {
+  font-family: var(--Pop-san);
+}
+header {
+  text-align: center;
+  margin: 2rem;
+  font-family: var(--Pop-san);
+  color: var(--color);
+}
+
+#countries {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+#countries h2 {
+  font-size: 1rem;
+  background-color: aquamarine;
+  width: 100%;
+}
+.country-col {
+  background: #567895;
+  border: 1px solid burlywood;
+  font-family: var(--Pop-san);
+  text-align: var(--align);
+  flex: 1 1 auto;
+}
+.country-col .country-set {
+  color: white;
+  font-weight: 700;
+}
+img {
+  width: 60%;
+  height: 120px;
+}
+
+.modal__weather {
+  cursor: pointer;
+  color: white;
+  background-color: #0d6efd;
+  display: inline-block;
+  line-height: 1.5;
+  margin: 10px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.search_filter {
+  width: 50%;
+  left: 5%;
+  top: 20%;
+  margin: 0 auto;
+}
+
+.search_filter input {
+  /* border: none; */
+  margin: 30px;
+  border-radius: 10px;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  /* outline: none; */
+  color: rgb(43, 57, 69);
+}
+/* .hidden {
+  display: none;
+}
+
+.Popup__Weather {
+  position: fixed;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 500px;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.5);
+  transform: translate(-50%);
+  left: 50%;
+  top: 30%;
+}
+
+.weather-content {
+  display: flex;
+  align-items: center;
+  flex: 1 auto;
+}
+
+.weather-content img {
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.weather-content {
+  flex: 1 auto;
+}
+
+.weather-content h3 {
+  margin: 5px 0;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+} */
+.hidden {
+  display: none;
+}
+
+.Popup__Weather {
+  position: fixed;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  z-index: 1001;
+  text-align: left;
+}
+
+.weather-content {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.weather-content img {
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.weather-content div {
+  flex: 1;
+}
+
+.weather-content h3 {
+  margin: 5px 0;
+}
+
+.weather-content p {
+  margin: 5px 0;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.button-close {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-close:hover {
+  background-color: #0056b3;
+}
+
+/* .hidden {
+  display: none;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.Popup__Weather {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  z-index: 20;
+  border-radius: 5px;
+} */
+@media (max-width: 1000px) {
+  #countries {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+@media (max-width: 700px) {
+  #countries {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  #countries {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+}

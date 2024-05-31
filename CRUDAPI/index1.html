@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <div class="values"></div>
+    <button id="newProductBtn">New Product</button>
+    <div id="newProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="text" id="newTitle" placeholder="Title"><br>
+            <input type="text" id="newBrand" placeholder="Brand"><br>
+            <input type="number" id="newPrice" placeholder="Price"><br>
+            <button id="saveNewProduct">Save</button>
+        </div>
+    </div>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input type="hidden" id="editId">
+            <input type="text" id="editTitle" placeholder="Title"><br>
+            <input type="text" id="editBrand" placeholder="Brand"><br>
+            <input type="number" id="editPrice" placeholder="Price"><br>
+            <button id="saveChanges">Save Changes</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud Application</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <button id="newProductBtn">New Product</button>
+    <div class="values"></div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal(modal)">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <label for="editTitle">Product Name:</label>
+                <input type="text" id="editTitle" required>
+                <label for="editBrand">Product Brand:</label>
+                <input type="text" id="editBrand" required>
+                <label for="editPrice">Product Price:</label>
+                <input type="number" id="editPrice" required>
+                <button type="button" id="saveChanges">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="newProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeNewProductModal()">&times;</span>
+            <h2>New Product</h2>
+            <form id="newProductForm">
+                <input type="hidden" id="editId">
+                <label for="newTitle">Product Name:</label>
+                <input type="text" id="newTitle" required>
+                <label for="newBrand">Product Brand:</label>
+                <input type="text" id="newBrand" required>
+                <label for="newPrice">Product Price:</label>
+                <input type="number" id="newPrice" required>
+                <button type="button" id="saveNewProduct" onclick="">Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="pagination">
+        <button id="prevPageBtn">Previous</button>
+        <span id="currentPage"></span>
+        <button id="nextPageBtn">Next</button>
+    </div>
+    
+    <script src="script2.js">
+
+    </script>
+</body>
+
+</html> -->

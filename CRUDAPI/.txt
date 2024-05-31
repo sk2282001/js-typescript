@@ -1,0 +1,303 @@
+// function productapi() {
+//   fetch("https://dummyjson.com/products")
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//       let data1 = "";
+//       data1.forEach((data) => {
+//         data1 += `<p>${data.id}: ${data.body}</p>`;
+//       });
+//       document.querySelector(".search").innerHTML = data1;
+//     });
+// }
+// productapi();
+
+// function productapi() {
+//   fetch("https://dummyjson.com/products")
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//         displayCard(data.products);
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching the products:", error);
+//     });
+// }
+
+// function displayCard(products) {
+//   let data1 = "";
+//   products.forEach((product) => {
+//     data1 += `<div class="product" id="product-${product.id}">
+//         <img src="${product.images[0]}" alt="Product Image">
+//         <p>Product ID: <span>${product.id}</span></p>
+//         <h3>Product Name: <span>${product.title}</span></h3>
+//         <h3>Product Brand: <span>${product.brand}</span></h3>
+//         <h3>Price: <span>$${product.price}</span></h3>
+//         <button class="edit" onclick="openEditModal(${product.id}, '${product.title}', '${product.brand}', ${product.price})">EDIT</button>
+//         <button class="delete" onclick="deleteCard(${product.id})">DELETE</button>
+//       </div>`;
+//   });
+//   console.log("Generated HTML:", data1);
+//   const container = document.querySelector(".values");
+//   if (container) {
+//     container.innerHTML = data1;
+//   } else {
+//     console.error("Container element with class 'values' not found.");
+//   }
+// }
+
+// function deleteCard(productId) {
+//   fetch(`https://dummyjson.com/products/${productId}`, {
+//     method: "DELETE",
+//   })
+//     .then((res) => res.json())
+//     .then(() => {
+//       const productElement = document.getElementById(`product-${productId}`);
+//       if (productElement) {
+//         productElement.remove();
+//       } else {
+//         console.error(
+//           `Product element with ID product-${productId} not found.`
+//         );
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error deleting the product:", error);
+//     });
+// }
+
+// function openEditModal(id, title, description, price) {
+//   document.getElementById("editId").value = id;
+//   document.getElementById("editTitle").value = title;
+//   document.getElementById("editDescription").value = description;
+//   document.getElementById("editPrice").value = price;
+//   document.getElementById("editModal").style.display = "block";
+// }
+
+// function closeModal() {
+//   document.getElementById("editModal").style.display = "none";
+// }
+
+// document.querySelector(".close").addEventListener("click", closeModal);
+
+// window.onclick = function (event) {
+//   if (event.target == document.getElementById("editModal")) {
+//     closeModal();
+//   }
+// };
+
+// document.getElementById("saveChanges").addEventListener("click", function () {
+//   const id = document.getElementById("editId").value;
+//   const title = document.getElementById("editTitle").value;
+//   const description = document.getElementById("editDescription").value;
+//   const price = document.getElementById("editPrice").value;
+
+//   fetch(`https://dummyjson.com/products/${id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       title: title,
+//       description: description,
+//       price: price,
+//     }),
+//   })
+//     .then((res) => res.json())
+//     .then((updatedProduct) => {
+//       document.querySelector(`#product-${id} h3 span`).textContent =
+//         updatedProduct.title;
+//       document.querySelector(`#product-${id} p span`).textContent =
+//         updatedProduct.description;
+//       document.querySelector(
+//         `#product-${id} .price span`
+//       ).textContent = `$${updatedProduct.price}`;
+//       closeModal();
+//     })
+//     .catch((error) => {
+//       console.error("Error updating the product:", error);
+//     });
+// });
+
+// productapi();
+
+function productapi() {
+//   fetch("https://dummyjson.com/products")
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//       displayCard(data.products);
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching the products:", error);
+//     });
+// }
+
+// function displayCard(products) {
+//   let data1 = "";
+//   products.forEach((product) => {
+//     data1 += `<div class="product" id="product-${product.id}">
+//         <img src="${product.images[0]}" alt="Product Image">
+//         <p>Product ID: <span>${product.id}</span></p>
+//         <h3>Product Name: <span class="product-title">${product.title}</span></h3>
+//         <h3>Product Brand: <span class="product-brand">${product.brand}</span></h3>
+//         <h3>Price: <span class="product-price">$${product.price}</span></h3>
+//         <button class="edit" onclick="openEditModal(${product.id}, '${product.title}', '${product.brand}', ${product.price})">EDIT</button>
+//         <button class="delete" onclick="deleteCard(${product.id})">DELETE</button>
+//       </div>`;
+//   });
+//   document.querySelector(".values").innerHTML = data1;
+// }
+
+// function deleteCard(productId) {
+//   fetch(`https://dummyjson.com/products/${productId}`, {
+//     method: "DELETE",
+//   })
+//     .then((res) => {
+//       if (!res.ok) {
+//         throw new Error("Failed to delete product");
+//       }
+//       return res.json();
+//     })
+//     .then(() => {
+//       const productElement = document.getElementById(`product-${productId}`);
+//       if (productElement) {
+//         productElement.remove();
+//       } else {
+//         console.error(`Product element with ID product-${productId} not found.`);
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error deleting the product:", error);
+//     });
+// }
+
+// function openEditModal(id, title, brand, price) {
+//   document.getElementById("editId").value = id;
+//   document.getElementById("editTitle").value = title;
+//   document.getElementById("editBrand").value = brand;
+//   document.getElementById("editPrice").value = price;
+//   document.getElementById("editModal").style.display = "block";
+// }
+
+// function closeModal() {
+//   document.getElementById("editModal").style.display = "none";
+// }
+
+// document.querySelector(".close").addEventListener("click", closeModal);
+
+// window.onclick = function (event) {
+//   if (event.target == document.getElementById("editModal")) {
+//     closeModal();
+//   }
+// };
+
+// document.getElementById("saveChanges").addEventListener("click", function () {
+//   const id = document.getElementById("editId").value;
+//   const title = document.getElementById("editTitle").value;
+//   const brand = document.getElementById("editBrand").value;
+//   const price = document.getElementById("editPrice").value;
+
+//   fetch(`https://dummyjson.com/products/${id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       title: title,
+//       brand: brand,
+//       price: price,
+//     }),
+//   })
+//     .then((res) => {
+//       if (!res.ok) {
+//         throw new Error("Failed to update product");
+//       }
+//       return res.json();
+//     })
+//     .then((updatedProduct) => {
+//       const productTitleElement = document.querySelector(`#product-${id} .product-title`);
+//       const productBrandElement = document.querySelector(`#product-${id} .product-brand`);
+//       const productPriceElement = document.querySelector(`#product-${id} .product-price`);
+
+//       if (productTitleElement) {
+//         productTitleElement.textContent = updatedProduct.title;
+//       } else {
+//         console.error(`Product title element with ID product-${id} not found.`);
+//       }
+
+//       if (productBrandElement) {
+//         productBrandElement.textContent = updatedProduct.brand;
+//       } else {
+//         console.error(`Product brand element with ID product-${id} not found.`);
+//       }
+
+//       if (productPriceElement) {
+//         productPriceElement.textContent = `$${updatedProduct.price}`;
+//       } else {
+//         console.error(`Product price element with ID product-${id} not found.`);
+//       }
+
+//       closeModal();
+//     })
+//     .catch((error) => {
+//       console.error("Error updating the product:", error);
+//     });
+// });
+
+// productapi();
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="search_filter">
+    <input class="search" type="text" />
+  </div>
+  <div class="values"></div>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <button class="close">x</button>
+      <h2>Edit Product</h2>
+      <form id="editForm">
+        <input type="text" id="editId">
+        <label for="editTitle">Product Name:</label>
+        <input type="text" id="editTitle" required>
+        <label for="editBrand">Product Brand:</label>
+        <input type="text" id="editBrand" required>
+        <label for="editPrice">Product Price:</label>
+        <input type="number" id="editPrice" required>
+        <button type="button" id="saveChanges">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="newProductModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeNewProductModal()">&times;</span>
+      <h2>New Product</h2>
+      <form id="newProductForm">
+        <label for="newTitle">Product Name:</label>
+        <input type="text" id="newTitle" required>
+        <label for="newBrand">Product Brand:</label>
+        <input type="text" id="newBrand" required>
+        <label for="newPrice">Product Price:</label>
+        <input type="number" id="newPrice" required>
+        <button type="button" id="saveNewProduct">Save</button>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
