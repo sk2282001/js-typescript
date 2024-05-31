@@ -233,3 +233,10 @@ class Emp extends Rectangle {
       this.position = position
     }
 }
+
+const emp = new Emp(3, 'saravanansivakumar', 'SDE1: Frontend Developer');
+console.log(emp);
+console.log(emp.name);
+console.log(emp.position);
+
+document.write('saravanan');
