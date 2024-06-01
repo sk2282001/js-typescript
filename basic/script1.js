@@ -95,15 +95,15 @@ if (age == 34) {
 
 // if (fav !== 23) console.log("Why not 23");
 
-// const a = "saravanan";
+const a = "saravanan";
 
-// const aa = a.charAt(0).toUpperCase() + a.slice(1);
-// console.log(aa);
+const aa = a.charAt(0).toUpperCase() + a.slice(1);
+console.log(aa);
 
-// function sum(...arr) {
-//   return arr.reduce((total, element) => total + element, 0);
-// }
-// console.log(sum(1, 2, 3, 4, 5, 6));
+function sum(...arr) {
+  return arr.reduce((total, element) => total + element, 0);
+}
+console.log(sum(1, 2, 3, 4, 5, 6));
 
 // const arr1 = [1, 2, 3];
 // const arr2 = [1, 2, 3];
@@ -151,20 +151,40 @@ const numbers = [1, 2, 3, 4, 5];
 
 const even = numbers.filter(isEven);
 
-function isEven(value){
-   return value % 2 === 0;
+function isEven(value) {
+  return value % 2 === 0;
 }
-console.log(even)
+console.log(even);
 
-const people = [ {
-    name:'saravanan',
+const people = [
+  {
+    name: "saravanan",
     age: 26,
-}, {
-    name: 'iSACA',
+  },
+  {
+    name: "iSACA",
     age: 18,
-}, {
-   name: 'jai', age: 15
-}]
+  },
+  {
+    name: "jai",
+    age: 15,
+  },
+];
 
-const adults = people.filter(person => person.age >= 18)
-console.log(adults)
+const adults = people.filter((person) => person.age >= 18);
+console.log(adults);
+
+//funciton closures
+
+function closures() {
+  const name = "saravanan";
+
+  function displayName() {
+    console.log(name);
+  }
+  displayName();
+}
+closures();
+let years = [];
+let year = [];
+console.log(years["2"] !== year["02"]);
