@@ -1,0 +1,60 @@
+// "use strict";
+
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
+
+// const person = new Person("saravanan", 2001);
+// const person1 = new Person("saravanansivakumar", 1985);
+// const person2 = new Person("udhai", 1995);
+// console.log(person);
+// console.log(person1);
+// console.log(person2);
+
+// // just check person pointing to constructor
+// console.log(person instanceof Person);
+
+// console.log(Person.prototype);
+// Person.prototype.calcAge = function () {
+//   console.log(2024 - this.birthYear);
+// };
+
+// person.calcAge();
+// person1.calcAge();
+// person2.calcAge();
+
+// const Person = function (firstName, birthYear) {
+//   this.firstname = firstName;
+//   this.birthYear = birthYear;
+// };
+
+// let person = new Person("saravanan", 2001);
+// let person1 = new Person("saravanansivakumar", 1975);
+// let person2 = new Person("udhai", 1999);
+// console.log(person);
+// console.log(person1);
+// console.log(person2);
+
+// // just checking person pointing to constructor intance
+// console.log(person instanceof Person);
+
+// // just checking Person pointing to constructor
+// console.log(Person.prototype);
+
+// Person.prototype.calcAge = function () {
+//   console.log(2024 - this.birthYear);
+// };
+
+// person.calcAge();
+// person1.calcAge();
+// person2.calcAge();
+
+// console.log(person.__proto__);
+// console.log(person1.__proto__);
+// console.log(person2.__proto__);
+
+// console.log(person.__proto__ === Person.prototype);
+
+// console.log(Person.prototype.isPrototypeOf(person));
+

@@ -87,30 +87,30 @@ dog1.speak();
 
 // javascript
 // Copy code
-// class Animal {
-//   constructor(name) {
-//     this.name = name;
-//   }
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
 
-//   speak() {
-//     console.log(`${this.name} makes a noise.`);
-//   }
-// }
+  speak() {
+    console.log(`${this.name} makes a noise.`);
+  }
+}
 
-// class Dog extends Animal {
-//   speak() {
-//     console.log(`${this.name} barks.`);
-//   }
-// }
+class Dog extends Animal {
+  speak() {
+    console.log(`${this.name} barks.`);
+  }
+}
 
-// class Cat extends Animal {
-//   speak() {
-//     console.log(`${this.name} meows.`);
-//   }
-// }
+class Cat extends Animal {
+  speak() {
+    console.log(`${this.name} meows.`);
+  }
+}
 
-// const animals = [new Dog("Rex"), new Cat("Whiskers")];
-// animals.forEach((animal) => animal.speak());
+const animals = [new Dog("Rex"), new Cat("Whiskers")];
+animals.forEach((animal) => animal.speak());
 // Output:
 // Rex barks.
 // Whiskers meows.

@@ -1,0 +1,181 @@
+//Arrays Methods syntax
+
+//Literal Notation
+
+const fruits = ["apple", "banana", "orange"];
+
+//constructor Notation
+
+const fruits1 = new Array("apple", "orange", "cherry");
+
+//Accessing Elements
+
+console.log(fruits[0]);
+console.log(fruits1[2]);
+
+//Modifying Elements
+
+fruits[1] = "blueberry";
+console.log(fruits);
+
+//Adding Elements
+//1. push
+//2. unshift
+
+fruits.push("mango");
+console.log(fruits);
+
+fruits.unshift("guava");
+console.log(fruits);
+
+//Removing Elements
+//1. pop();
+//2. shift();
+// please create variable to store then after do that because dont affect original array
+let lastfruits = fruits.pop();
+console.log(lastfruits);
+
+let firstFruits = fruits.shift();
+console.log(firstFruits);
+console.log(fruits);
+
+//Finding the Length
+
+console.log(fruits.length);
+
+//Looping Through Arrays
+//1.for
+//2.for...of
+for (let i = 0; i < fruits.length; i++) {
+  // const element = fruits[i];
+  // console.log(element)
+  console.log(fruits[i]);
+}
+
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+
+// Common Array Methods
+//1.forEach();
+// fruits.forEach(function(value, index));
+fruits.forEach(function (fruit, index, array) {
+  console.log(index, fruit);
+});
+
+//2.map();
+let upperfruits = fruits.map(function (fruit) {
+  return fruit.toUpperCase();
+});
+console.log(upperfruits);
+
+//3.filter();
+let shortnamefruit = fruits.filter(function (fruit) {
+  return fruit.length <= 5;
+});
+console.log(shortnamefruit);
+
+//4.reduce();
+
+let allfruits = fruits.reduce(function (acc, fruit) {
+  return acc + " " + fruit;
+}, "Fruits: ");
+
+console.log(allfruits);
+
+//5.find();
+
+let foundFruit = fruits.find(function (fruit) {
+  return fruit === "blueberry";
+});
+console.log(foundFruit);
+
+//6.findIndex();
+
+let foundIndex = fruits.findIndex(function (fruit) {
+  return fruit === "blueberry";
+});
+console.log(foundIndex);
+
+//7.includes();
+
+let hasBanna = fruits.includes("apple");
+console.log(hasBanna);
+
+//Joining Arrays
+//1.join();
+let fruitString = fruits.join(", ");
+console.log(fruitString);
+
+//Sorting Arrays
+//1.sort();
+
+let sortedFruits = fruits.sort();
+console.log(sortedFruits);
+
+//Reverse Arrays
+//1.reverse();
+
+let reversedFruits = fruits.reverse();
+console.log(reversedFruits);
+
+// -----------------------------
+// Accessor Methods (Do not modify the array)
+// Slice(): Returns a shallow copy of a portion of an array into a new array object.
+
+let somefruits = fruits.slice(0, 1);
+console.log(somefruits);
+
+// Splice(): Adds/removes elements from an array.
+
+fruits.splice(1, 2, "berries");
+console.log(fruits);
+
+//concat(): merge 2 or more arrays
+
+let fruits2 = ["apple", "orange"];
+let morefruits = ["mango", "banana"];
+let allfruitss = fruits2.concat(morefruits);
+console.log(allfruitss);
+
+//indexOf(): Returns the first index at which a given element can be found.
+
+let fruitmore = ["watermellon", "grapes", "pineapple"];
+let index1 = fruitmore.indexOf("watermellon");
+console.log(index1);
+
+//reduce
+let numbers = [1, 2, 3, 4, 5];
+let sum = numbers.reduce(function (total, number) {
+  return total + number;
+}, 0);
+console.log(sum);
+
+//find()
+
+//Returns the value of the first element that satisfies the provided testing function.
+let fruits111 = ["Apple", "Banana", "Cherry"];
+let foundFruit1 = fruits111.find(function (fruit) {
+  return fruit === "Banana";
+});
+console.log(foundFruit1); // "Banana"
+
+let some1 = [1, 2, 3, 4, 5, 6];
+let somef = some1.some(function (some) {
+  return some % 2 === 0;
+});
+
+console.log(somef);
+
+let some11 = [1, 2, 3, 4, 5, 6];
+let someff = some11.every(function (some) {
+  return some % 2 === 0;
+});
+
+console.log(someff);
+
+//flat():
+
+let nestedArray = [1, 2, [3, 4, [5, 6]]];
+let flatArray = nestedArray.flat(2);
+console.log(flatArray);
