@@ -100,10 +100,17 @@ const a = "saravanan";
 const aa = a.charAt(0).toUpperCase() + a.slice(1);
 console.log(aa);
 
+const aaa = a.charAt(0).toUpperCase() + a.slice(1);
+console.log(aaa)
+
 function sum(...arr) {
   return arr.reduce((total, element) => total + element, 0);
 }
 console.log(sum(1, 2, 3, 4, 5, 6));
+
+function sums(...fff){
+  return fff.reduce((total, element) => total + element, 0)
+}
 
 // const arr1 = [1, 2, 3];
 // const arr2 = [1, 2, 3];
@@ -188,3 +195,51 @@ closures();
 let years = [];
 let year = [];
 console.log(years["2"] !== year["02"]);
+
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(`${this.name} makes a noise`);
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(`${this.name} makes barks`);
+  }
+}
+
+class Cat extends Animal {
+  speak() {
+    console.log(`${this.name} makes meows`);
+  }
+}
+
+const animals = [new Dog("Alabai"), new Cat("leopard")];
+animals.forEach((animal) => animal.speak());
+// class Animal {
+//   constructor(name) {
+//     this.name = name;
+//   }
+
+//   speak() {
+//     console.log(`${this.name} makes a noise.`);
+//   }
+// }
+
+// class Dog extends Animal {
+//   speak() {
+//     console.log(`${this.name} barks.`);
+//   }
+// }
+
+// class Cat extends Animal {
+//   speak() {
+//     console.log(`${this.name} meows.`);
+//   }
+// }
+
+// const animals = [new Dog("Rex"), new Cat("Whiskers")];
+// animals.forEach((animal) => animal.speak());
