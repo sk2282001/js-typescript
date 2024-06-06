@@ -65,11 +65,30 @@ const person = {
   firstname: "saravanan",
   lastname: "Doe",
   age: 22,
+  birthYear: 2001,
   address: {
     street: "05 ganga nagar",
     city: "Chennai",
     state: "TN",
   },
+
+  calcAge: function () {
+    this.age =  2024 - this.birthYear;
+    return this.age
+  }
 };
 
-console.log(person.lastname);
+// Dot notation vs Bracket
+// console.log(person.lastname);
+// console.log(person['lastname']);
+
+// const nameKey = "name";
+// console.log(person["first" + nameKey]);
+
+// person.location = "india";
+// person["instagram"] = "saravanan2282001@gmail.com";
+// console.log(person);
+console.log(person.age)
+console.log(person.calcAge());
+// console.log(person['calcAge'][2001]);
+

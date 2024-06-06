@@ -119,7 +119,7 @@ console.log(sortedFruits);
 let reversedFruits = fruits.reverse();
 console.log(reversedFruits);
 
-// -----------------------------
+// -----------------------
 // Accessor Methods (Do not modify the array)
 // Slice(): Returns a shallow copy of a portion of an array into a new array object.
 

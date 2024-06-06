@@ -17,7 +17,7 @@ console.log(udhai);
 // 4. function automatically return {}
 
 //prototypes
-
+console.log(person instanceof Person);
 console.log(Person.prototype);
 
 Person.prototype.calcAge = function () {
